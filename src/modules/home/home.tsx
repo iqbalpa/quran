@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { getAllSurah } from '@/api/api';
 import { ISurah } from '@/constant/surah.constant';
+import Link from 'next/link';
 
 const HomeModule: React.FC = () => {
   const [surahs, setSurahs] = useState<ISurah[]>([]);
@@ -25,7 +26,8 @@ const HomeModule: React.FC = () => {
       <h1 className="text-2xl font-bold">Baca Al-Quran Online</h1>
       <div className="mt-5 grid grid-cols-4 gap-3">
         {surahs.map((surah, _index) => (
-          <div
+          <Link
+            href={`/${surah.nomor}`}
             key={surah.nomor}
             className="hover:border-teal-300S group flex flex-row justify-between rounded-md border-[1px] border-slate-400 bg-slate-700 p-4 duration-200 hover:cursor-pointer hover:border-teal-300"
           >
@@ -49,7 +51,7 @@ const HomeModule: React.FC = () => {
                 {surah.jumlahAyat} ayat
               </p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
