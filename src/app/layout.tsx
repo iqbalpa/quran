@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/header/header';
 import GoTopButton from '@/components/goTopButton/goTopButton';
+import BackButton from '@/components/backButton/backButton';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({
         className={`${inter.className} relative bg-gray-800 text-slate-200`}
       >
         <Header />
+        <BackButton />
         {children}
         <GoTopButton />
       </body>
