@@ -5,18 +5,20 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-    title: "Al - Qur'an",
-    description: 'Reading Quran Online Here',
+  title: "Al - Qur'an",
+  description: 'Reading Quran Online Here',
 };
 
 export default function RootLayout({
-    children,
+  children,
 }: Readonly<{
-    children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-    return (
-        <html lang="en">
-            <body className={inter.className}>{children}</body>
-        </html>
-    );
+  return (
+    <html lang="en">
+      <body className={`${inter.className} bg-gray-900 text-slate-200`}>
+        {children}
+      </body>
+    </html>
+  );
 }
