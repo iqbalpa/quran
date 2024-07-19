@@ -35,7 +35,7 @@ const DetailSurahPage: React.FC = () => {
       <p>
         {surah.jumlahAyat} ayat - {surah.arti} - {surah.tempatTurun}
       </p>
-      <div className="max-w-screen mt-5 flex flex-col items-center gap-3 px-4 md:px-6 lg:px-10">
+      <div className="max-w-screen mt-5 flex flex-col items-center gap-3 px-4 md:px-10 lg:px-14 xl:px-20">
         {surah.ayat.map((ayat, _index) => (
           <div
             key={ayat.nomorAyat}
@@ -45,9 +45,11 @@ const DetailSurahPage: React.FC = () => {
               <p className="text-xs md:text-sm">
                 {surah.nomor}:{ayat.nomorAyat}
               </p>
-              <p className="text-right">{ayat.teksArab}</p>
+              <p className="text-right leading-loose">{ayat.teksArab}</p>
             </div>
-            <p className="">{ayat.teksIndonesia}</p>
+            <p className="text-xs text-slate-300 md:text-sm">
+              {ayat.teksIndonesia}
+            </p>
             {_index < surah.ayat.length - 1 && (
               <hr className="my-3 w-full border-t border-gray-600" />
             )}
