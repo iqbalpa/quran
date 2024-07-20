@@ -22,14 +22,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} flex h-screen flex-col overflow-hidden bg-gray-800 text-slate-200`}
+        className={`${inter.className} flex h-screen flex-col bg-gray-800 text-slate-200`}
       >
         <Header />
-        <div className="flex flex-1 flex-row overflow-hidden">
+        <div className="flex flex-1 flex-row">
           <main className="flex-1 overflow-y-hidden">{children}</main>
-          <ScrollArea className="flex-shrink-0 bg-slate-900">
+          <div className="flex max-h-screen flex-shrink-0 overflow-hidden overflow-y-auto bg-slate-900 pb-4 pt-16">
             <Sidebar />
-          </ScrollArea>
+          </div>
         </div>
         <GoTopButton />
         <BackButton />

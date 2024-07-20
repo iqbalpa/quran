@@ -30,7 +30,7 @@ const DetailSurahPage: React.FC = () => {
   }
 
   return (
-    <div className="flex h-full max-h-screen flex-col overflow-y-auto pb-20">
+    <div className="flex h-full max-h-screen flex-col overflow-y-auto pt-16 pb-4">
       <div className="flex flex-col items-center pt-20 md:pt-10">
         <h1 className="text-xl font-bold">
           {surah.namaLatin} - {surah.nama}
