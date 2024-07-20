@@ -29,7 +29,7 @@ const DetailSurahPage: React.FC = () => {
   }
 
   return (
-    <div className="mt-10 flex flex-col items-center pb-20">
+    <div className="mt-20 flex flex-col items-center pb-20 md:mt-10">
       <h1 className="text-xl font-bold">
         {surah.namaLatin} - {surah.nama}
       </h1>

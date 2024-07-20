@@ -22,7 +22,7 @@ const HomeModule: React.FC = () => {
   }, []);
 
   return (
-    <div className="max-w-screen m-10 flex min-h-screen flex-col items-center">
+    <div className="mt-20 md:mt-10 max-w-screen m-10 flex min-h-screen flex-col items-center">
       <h1 className="text-2xl font-bold">Baca Al-Quran Online</h1>
       <div className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {surahs.map((surah, _index) => (
