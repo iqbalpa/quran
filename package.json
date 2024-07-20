@@ -12,11 +12,13 @@
     "format:fix": "prettier --write --list-different ."
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.1",
     "@radix-ui/react-scroll-area": "^1.1.0",
     "axios": "^1.7.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "daisyui": "^4.12.10",
+    "hamburger-react": "^2.5.1",
     "lint-staged": "^15.2.7",
     "lucide-react": "^0.411.0",
     "next": "14.2.2",
