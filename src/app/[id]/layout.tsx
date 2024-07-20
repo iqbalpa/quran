@@ -1,4 +1,4 @@
-import { ScrollArea } from '@/components/ui/scroll-area';
+import BackButton from '@/components/backButton/backButton';
 
 export default function DetailLayout({
   children,
@@ -6,7 +6,8 @@ export default function DetailLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex h-screen flex-1 overflow-hidden overflow-y-auto">
+    <div className="relative flex h-screen flex-1 overflow-hidden overflow-y-auto">
+      <BackButton />
       {children}
     </div>
   );
