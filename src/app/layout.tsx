@@ -27,7 +27,7 @@ export default function RootLayout({
         <Header />
         <div className="flex flex-1 flex-row overflow-hidden">
           <main className="flex-1 overflow-y-hidden">{children}</main>
-          <ScrollArea className="flex-shrink-0 bg-slate-900 p-4">
+          <ScrollArea className="flex-shrink-0 bg-slate-900">
             <Sidebar />
           </ScrollArea>
         </div>

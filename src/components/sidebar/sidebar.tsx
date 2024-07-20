@@ -28,7 +28,7 @@ const Sidebar: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="hidden flex-col gap-2 md:flex p-4">
       {surahs.map((surah) => {
         const isActive = pathname === `/${surah.nomor}`;
 
