@@ -23,6 +23,10 @@ const Sidebar: React.FC = () => {
     fetchData();
   }, []);
 
+  if (pathname === '/') {
+    return null;
+  }
+
   return (
     <div className="flex flex-col gap-2">
       {surahs.map((surah) => {
