@@ -3,8 +3,6 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/header/header';
 import GoTopButton from '@/components/goTopButton/goTopButton';
-import BackButton from '@/components/backButton/backButton';
-import { ScrollArea } from '@/components/ui/scroll-area';
 import Sidebar from '@/components/sidebar/sidebar';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -32,7 +30,6 @@ export default function RootLayout({
           </div>
         </div>
         <GoTopButton />
-        <BackButton />
       </body>
     </html>
   );
