@@ -20,12 +20,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} max-w-screen relative max-h-screen bg-gray-800 text-slate-200`}
+        className={`${inter.className} flex max-h-screen flex-col bg-gray-800 text-slate-200`}
       >
         <Header />
-        <BackButton />
-        {children}
+        <main className="flex-1 overflow-auto">{children}</main>
         <GoTopButton />
+        <BackButton />
       </body>
     </html>
   );
