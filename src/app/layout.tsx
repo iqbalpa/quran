@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} relative bg-gray-800 text-slate-200`}
+        className={`${inter.className} max-w-screen relative max-h-screen bg-gray-800 text-slate-200`}
       >
         <Header />
         <BackButton />
