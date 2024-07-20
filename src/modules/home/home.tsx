@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { getAllSurah } from '@/api/api';
 import { ISurah } from '@/constant/surah.constant';
 import Link from 'next/link';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 const HomeModule: React.FC = () => {
   const [surahs, setSurahs] = useState<ISurah[]>([]);
@@ -22,7 +23,7 @@ const HomeModule: React.FC = () => {
   }, []);
 
   return (
-    <div className="mt-20 md:mt-10 max-w-screen m-10 flex min-h-screen flex-col items-center">
+    <div className="max-w-screen mt-36 flex min-h-screen flex-col items-center md:mt-28">
       <h1 className="text-2xl font-bold">Baca Al-Quran Online</h1>
       <div className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {surahs.map((surah, _index) => (

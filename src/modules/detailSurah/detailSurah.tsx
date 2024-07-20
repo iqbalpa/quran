@@ -1,6 +1,7 @@
 'use client';
 
 import { getSurahByNomor } from '@/api/api';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { DetailSurah } from '@/constant/surah.constant';
 import { Play } from 'lucide-react';
 import { usePathname } from 'next/navigation';
@@ -25,24 +26,23 @@ const DetailSurahPage: React.FC = () => {
   }, [pathname]);
 
   if (!surah) {
-    return;
+    return null;
   }
 
   return (
-    <div className="mt-20 flex flex-col items-center pb-20 md:mt-10">
-      <h1 className="text-xl font-bold">
-        {surah.namaLatin} - {surah.nama}
-      </h1>
-      <p>
-        {surah.jumlahAyat} ayat - {surah.arti} - {surah.tempatTurun}
-      </p>
-      <div className="max-w-screen mt-5 flex flex-col items-center gap-3 px-4 md:px-10 lg:px-14 xl:px-20">
+    <div className="flex h-full max-h-screen flex-col overflow-y-auto pb-4 pt-16">
+      <div className="flex flex-col items-center pt-20 md:pt-10">
+        <h1 className="text-xl font-bold">
+          {surah.namaLatin} - {surah.nama}
+        </h1>
+        <p>
+          {surah.jumlahAyat} ayat - {surah.arti} - {surah.tempatTurun}
+        </p>
+      </div>
+      <ScrollArea className="mt-5 flex flex-col items-center gap-3 overflow-y-auto px-4 pb-5 md:px-10 lg:px-14 xl:px-20">
         {surah.ayat.map((ayat, _index) => (
-          <div className="flex w-full flex-col">
-            <div
-              key={ayat.nomorAyat}
-              className="flex w-full flex-row justify-between gap-3 text-sm md:text-base"
-            >
+          <div key={ayat.nomorAyat} className="flex w-full flex-col">
+            <div className="flex w-full flex-row justify-between gap-3 text-sm md:text-base">
               <div className="flex flex-col items-center justify-between gap-2">
                 <p className="text-xs md:text-sm">
                   {surah.nomor}:{ayat.nomorAyat}
@@ -69,7 +69,7 @@ const DetailSurahPage: React.FC = () => {
             <hr className="my-3 w-full border-t border-gray-600" />
           </div>
         ))}
-      </div>
+      </ScrollArea>
     </div>
   );
 };

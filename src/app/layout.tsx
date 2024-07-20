@@ -4,6 +4,8 @@ import './globals.css';
 import Header from '@/components/header/header';
 import GoTopButton from '@/components/goTopButton/goTopButton';
 import BackButton from '@/components/backButton/backButton';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import Sidebar from '@/components/sidebar/sidebar';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,12 +22,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} relative bg-gray-800 text-slate-200`}
+        className={`${inter.className} flex h-screen flex-col bg-gray-800 text-slate-200`}
       >
         <Header />
-        <BackButton />
-        {children}
+        <div className="flex flex-1 flex-row">
+          <main className="flex-1 overflow-y-hidden">{children}</main>
+          <div className="flex max-h-screen flex-shrink-0 overflow-hidden overflow-y-auto bg-slate-900 pb-4 pt-16">
+            <Sidebar />
+          </div>
+        </div>
         <GoTopButton />
+        <BackButton />
       </body>
     </html>
   );
