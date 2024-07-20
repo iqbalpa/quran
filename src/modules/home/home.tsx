@@ -27,7 +27,7 @@ const HomeModule: React.FC = () => {
     setQuery(e.target.value);
 
   return (
-    <div className="max-w-screen mt-36 mb-14 flex min-h-screen flex-col items-center md:mt-28">
+    <div className="max-w-screen mb-14 mt-36 flex min-h-screen flex-col items-center md:mt-28">
       <h1 className="text-2xl font-bold">Baca Al-Quran Online</h1>
       <SearchBar query={query} handleQueryChange={handleQueryChange} />
       <div className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
