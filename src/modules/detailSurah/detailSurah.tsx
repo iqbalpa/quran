@@ -62,11 +62,13 @@ const DetailSurahPage: React.FC = () => {
                   {surah.nomor}:{ayat.nomorAyat}
                 </p>
                 <button className="rounded-full bg-teal-500 p-3 duration-100 hover:bg-teal-700">
-                  <Play />
+                  <Play size={18} />
                 </button>
                 <AlertDialog>
                   <AlertDialogTrigger>
-                    <BookOpen />
+                    <button className="rounded-full bg-purple-500 p-3 duration-100 hover:bg-purple-700">
+                      <BookOpen size={18} />
+                    </button>
                   </AlertDialogTrigger>
                   <AlertDialogContent className="flex h-2/3 flex-col bg-slate-900 lg:max-w-screen-lg">
                     <AlertDialogHeader className="flex-shrink-0">
