@@ -1,23 +1,12 @@
 'use client';
 
 import { getSurahByNomor, getTafsirByNomor } from '@/api/api';
+import TasfirDialog from '@/components/tafsir/tafsir';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { DetailSurah, Tafsir } from '@/constant/surah.constant';
-import { BookOpen, Play } from 'lucide-react';
+import { Play } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
-
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
 
 const DetailSurahPage: React.FC = () => {
   const pathname = usePathname();
@@ -64,28 +53,11 @@ const DetailSurahPage: React.FC = () => {
                 <button className="rounded-full bg-teal-500 p-3 duration-100 hover:bg-teal-700">
                   <Play size={18} />
                 </button>
-                <AlertDialog>
-                  <AlertDialogTrigger>
-                    <button className="rounded-full bg-purple-500 p-3 duration-100 hover:bg-purple-700">
-                      <BookOpen size={18} />
-                    </button>
-                  </AlertDialogTrigger>
-                  <AlertDialogContent className="flex h-2/3 flex-col bg-slate-900 lg:max-w-screen-lg">
-                    <AlertDialogHeader className="flex-shrink-0">
-                      <AlertDialogTitle>
-                        Tafsir {surah.namaLatin} Ayat {ayat.nomorAyat}
-                      </AlertDialogTitle>
-                    </AlertDialogHeader>
-                    <ScrollArea className="flex-grow">
-                      <AlertDialogDescription>
-                        {tafsir[ayat.nomorAyat]?.teks}
-                      </AlertDialogDescription>
-                    </ScrollArea>
-                    <AlertDialogCancel className="flex-shrink-0 text-slate-700 duration-150 hover:bg-slate-300 hover:text-slate-900">
-                      Tutup
-                    </AlertDialogCancel>
-                  </AlertDialogContent>
-                </AlertDialog>
+                <TasfirDialog
+                  nomorAyat={ayat.nomorAyat}
+                  namaSurah={surah.namaLatin}
+                  teksTafsir={tafsir[ayat.nomorAyat]?.teks}
+                />
               </div>
               <div className="flex grow flex-col">
                 <p className="text-right text-lg leading-8 md:text-xl lg:text-2xl">
