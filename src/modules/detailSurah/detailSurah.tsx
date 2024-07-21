@@ -1,8 +1,9 @@
 'use client';
 
-import { getSurahByNomor } from '@/api/api';
+import { getSurahByNomor, getTafsirByNomor } from '@/api/api';
+import TasfirDialog from '@/components/tafsir/tafsir';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { DetailSurah } from '@/constant/surah.constant';
+import { DetailSurah, Tafsir } from '@/constant/surah.constant';
 import { Play } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
@@ -11,13 +12,15 @@ const DetailSurahPage: React.FC = () => {
   const pathname = usePathname();
   const nomorSurah = pathname.split('/')[1];
   const [surah, setSurah] = useState<DetailSurah>();
+  const [tafsir, setTafsir] = useState<Tafsir[]>([]);
 
   useEffect(() => {
     const fetchSurah = async () => {
       try {
         const res = await getSurahByNomor(parseInt(nomorSurah));
-        console.log(res);
         setSurah(res);
+        const res2 = await getTafsirByNomor(parseInt(nomorSurah));
+        setTafsir(res2);
       } catch (e) {
         console.log(`failed to fetch surah no ${nomorSurah}`);
       }
@@ -25,7 +28,7 @@ const DetailSurahPage: React.FC = () => {
     fetchSurah();
   }, [pathname]);
 
-  if (!surah) {
+  if (!surah || !tafsir) {
     return null;
   }
 
@@ -47,15 +50,14 @@ const DetailSurahPage: React.FC = () => {
                 <p className="text-xs md:text-sm">
                   {surah.nomor}:{ayat.nomorAyat}
                 </p>
-                <button
-                  onClick={() => {
-                    const audio = new Audio(ayat.audio[0]);
-                    audio.play();
-                  }}
-                  className="rounded-full bg-teal-500 p-3 duration-100 hover:bg-teal-700"
-                >
-                  <Play />
+                <button className="rounded-full bg-teal-500 p-3 duration-100 hover:bg-teal-700">
+                  <Play size={18} />
                 </button>
+                <TasfirDialog
+                  nomorAyat={ayat.nomorAyat}
+                  namaSurah={surah.namaLatin}
+                  teksTafsir={tafsir[ayat.nomorAyat]?.teks}
+                />
               </div>
               <div className="flex grow flex-col">
                 <p className="text-right text-lg leading-8 md:text-xl lg:text-2xl">

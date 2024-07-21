@@ -37,3 +37,8 @@ interface BriefSurah {
   namaLatin: string;
   nomor: number;
 }
+
+export interface Tafsir {
+  ayat: number;
+  teks: string;
+}

@@ -15,7 +15,6 @@ const Sidebar: React.FC = () => {
     const fetchData = async () => {
       try {
         const res = await getAllSurah();
-        console.log(res);
         setSurahs(res);
       } catch (e) {
         console.log('failed to fetch the surah');
