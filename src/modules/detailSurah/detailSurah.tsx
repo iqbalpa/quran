@@ -43,7 +43,7 @@ const DetailSurahPage: React.FC = () => {
         {surah.ayat.map((ayat, _index) => (
           <div key={ayat.nomorAyat} className="flex w-full flex-col">
             <div className="flex w-full flex-row justify-between gap-3 text-sm md:text-base">
-              <div className="flex flex-col items-center justify-between gap-2">
+              <div className="flex flex-col items-center justify-start gap-2">
                 <p className="text-xs md:text-sm">
                   {surah.nomor}:{ayat.nomorAyat}
                 </p>
