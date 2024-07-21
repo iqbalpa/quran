@@ -1,23 +1,37 @@
 'use client';
 
-import { getSurahByNomor } from '@/api/api';
+import { getSurahByNomor, getTafsirByNomor } from '@/api/api';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { DetailSurah } from '@/constant/surah.constant';
-import { Play } from 'lucide-react';
+import { DetailSurah, Tafsir } from '@/constant/surah.constant';
+import { BookOpen, Play } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
+
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 
 const DetailSurahPage: React.FC = () => {
   const pathname = usePathname();
   const nomorSurah = pathname.split('/')[1];
   const [surah, setSurah] = useState<DetailSurah>();
+  const [tafsir, setTafsir] = useState<Tafsir[]>([]);
 
   useEffect(() => {
     const fetchSurah = async () => {
       try {
         const res = await getSurahByNomor(parseInt(nomorSurah));
-        console.log(res);
         setSurah(res);
+        const res2 = await getTafsirByNomor(parseInt(nomorSurah));
+        setTafsir(res2);
       } catch (e) {
         console.log(`failed to fetch surah no ${nomorSurah}`);
       }
@@ -25,7 +39,7 @@ const DetailSurahPage: React.FC = () => {
     fetchSurah();
   }, [pathname]);
 
-  if (!surah) {
+  if (!surah || !tafsir) {
     return null;
   }
 
@@ -47,15 +61,29 @@ const DetailSurahPage: React.FC = () => {
                 <p className="text-xs md:text-sm">
                   {surah.nomor}:{ayat.nomorAyat}
                 </p>
-                <button
-                  onClick={() => {
-                    const audio = new Audio(ayat.audio[0]);
-                    audio.play();
-                  }}
-                  className="rounded-full bg-teal-500 p-3 duration-100 hover:bg-teal-700"
-                >
+                <button className="rounded-full bg-teal-500 p-3 duration-100 hover:bg-teal-700">
                   <Play />
                 </button>
+                <AlertDialog>
+                  <AlertDialogTrigger>
+                    <BookOpen />
+                  </AlertDialogTrigger>
+                  <AlertDialogContent className="flex h-2/3 flex-col bg-slate-900 lg:max-w-screen-lg">
+                    <AlertDialogHeader className="flex-shrink-0">
+                      <AlertDialogTitle>
+                        Tafsir {surah.namaLatin} Ayat {ayat.nomorAyat}
+                      </AlertDialogTitle>
+                    </AlertDialogHeader>
+                    <ScrollArea className="flex-grow">
+                      <AlertDialogDescription>
+                        {tafsir[ayat.nomorAyat]?.teks}
+                      </AlertDialogDescription>
+                    </ScrollArea>
+                    <AlertDialogCancel className="flex-shrink-0 text-slate-700 duration-150 hover:bg-slate-300 hover:text-slate-900">
+                      Tutup
+                    </AlertDialogCancel>
+                  </AlertDialogContent>
+                </AlertDialog>
               </div>
               <div className="flex grow flex-col">
                 <p className="text-right text-lg leading-8 md:text-xl lg:text-2xl">
